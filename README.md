@@ -166,15 +166,17 @@ ou leia o QR Code com Expo Go
 
 ### Galeria
 
-![Galeria](./screenshots/galeria.png)
+![Galeria](./screenshots/Galeria_Minha_Casa.jpeg)
+
+![Galeria](./screenshots/Galeria_Vazia.jpeg)
 
 ### Mapa
 
-![Mapa](./screenshots/mapa.png)
+![Mapa](./screenshots/Mapa_Vazio.jpeg)
 
 ### Detalhes do Mapa
 
-![Detalhes](./screenshots/detalhes.png)
+![Detalhes](./screenshots/Mapa_Minha_Casa.png)
 
 ---
 ## Autor
