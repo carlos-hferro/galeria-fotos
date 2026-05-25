@@ -1,50 +1,197 @@
-# Welcome to your Expo app 👋
+# Projeto Galeria de Fotos com Mapa e SQLite
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este projeto foi desenvolvido utilizando **React Native com Expo** como parte da disciplina de Desenvolvimento Mobile.
 
-## Get started
+O aplicativo permite cadastrar imagens da galeria do dispositivo, armazenar informações no banco SQLite local e visualizar a localização das imagens em um mapa interativo.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## Funcionalidades
 
-2. Start the app
+✅ Adicionar imagem pela galeria do dispositivo
+✅ Inserir título para cada imagem
+✅ Capturar localização atual automaticamente
+✅ Salvar dados localmente com SQLite
+✅ Exibir galeria de imagens
+✅ Exibir mapa com marcadores
+✅ Exibir miniatura ao tocar no marcador
+✅ Excluir imagens da galeria
+✅ Persistência de dados após fechar o aplicativo
+✅ Interface personalizada
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## Tecnologias Utilizadas
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+* React Native
+* Expo
+* TypeScript
+* SQLite
+* Expo Image Picker
+* Expo Location
+* React Native Maps
+* Expo Router
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## Bibliotecas utilizadas
 
-When you're ready, run:
+Instalação das dependências:
 
 ```bash
-npm run reset-project
+npx expo install expo-sqlite
+npx expo install expo-image-picker
+npx expo install expo-location
+npx expo install react-native-maps
+npx expo install react-native-safe-area-context
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+ou:
 
-## Learn more
+```bash
+npx expo install expo-sqlite expo-image-picker expo-location react-native-maps react-native-safe-area-context
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Estrutura do Banco de Dados
 
-## Join the community
+Tabela utilizada:
 
-Join our community of developers creating universal apps.
+```sql
+CREATE TABLE IF NOT EXISTS photos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  image_uri TEXT NOT NULL,
+  latitude REAL,
+  longitude REAL,
+  created_at TEXT NOT NULL
+);
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## Estrutura do Projeto
+
+```txt
+app
+ ├── (tabs)
+ │     ├── index.tsx
+ │     ├── explore.tsx
+ │     └── _layout.tsx
+ │
+database
+ └── database.ts
+```
+
+---
+
+## Fluxo da Aplicação
+
+```txt
+Usuário abre o aplicativo
+↓
+Seleciona uma imagem
+↓
+Visualiza a prévia
+↓
+Informa o título
+↓
+Aplicativo captura localização atual
+↓
+Imagem é salva no SQLite
+↓
+Galeria atualiza automaticamente
+↓
+Mapa exibe marcador da nova imagem
+```
+
+---
+
+## Como executar o projeto
+
+Clonar o repositório:
+
+```bash
+git clone https://github.com/carlos-hferro/galeria-fotos.git
+```
+
+Entrar na pasta:
+
+```bash
+cd galeria-fotos
+```
+
+Instalar dependências:
+
+```bash
+npm install
+```
+
+Executar:
+
+```bash
+npx expo start
+```
+
+Para abrir:
+
+```txt
+Pressione "a" → Android
+Pressione "w" → Web
+ou leia o QR Code com Expo Go
+```
+
+---
+
+## Funcionalidades demonstradas
+
+### Galeria
+
+* Cadastro de imagem
+* Título personalizado
+* Exclusão com confirmação
+* Persistência local
+
+### Mapa
+
+* Marcadores automáticos
+* Exibição da localização
+* Miniatura da imagem
+* Data e hora do registro
+
+---
+
+## Capturas de Tela
+
+### Galeria
+
+![Galeria](./screenshots/galeria.png)
+
+### Mapa
+
+![Mapa](./screenshots/mapa.png)
+
+### Detalhes do Mapa
+
+![Detalhes](./screenshots/detalhes.png)
+
+---
+## Autor
+
+Carlos Henrique Ferro de Almeida
+
+Curso: Desenvolvimento Mobile  
+Universidade: UNIPAR  
+Disciplina: Desenvolvimento Mobile
+
+---
+
+## Observações
+
+- O aplicativo utiliza SQLite para armazenamento local.
+- Os dados permanecem salvos após fechar o aplicativo.
+- A localização é capturada automaticamente no momento do cadastro.
+- O mapa exibe marcadores com miniatura e informações da imagem.
+  
+--- 
