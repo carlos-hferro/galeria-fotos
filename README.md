@@ -184,13 +184,13 @@ Ao tocar no marcador, detalhes da imagem são exibidos
 
 ### Galeria
 
-![Galeria](./screenshots/Galeria%20Vazia.jpeg)
-![Galeria](./screenshots/Galeria_Minha_Casa.jpeg)
+<img src="./screenshots/Galeria Vazia.jpeg" width="250">
+<img src="./screenshots/Galeria_Minha_Casa.jpeg" width="250">
 
 ### Mapa
 
-![Mapa](./screenshots/Mapa%20Minha%20Casa.jpeg)
-![Mapa](./screenshots/Mapa%20Vazio.jpeg)
+<img src="./screenshots/Mapa Minha Casa.jpeg" width="250">
+<img src="./screenshots/Mapa Vazio.jpeg" width="250">
 
 ---
 
