@@ -1,52 +1,51 @@
 # Projeto Galeria de Fotos com Mapa e SQLite
 
-Este projeto foi desenvolvido utilizando **React Native com Expo** como parte da disciplina de Desenvolvimento Mobile.
+Aplicativo mobile desenvolvido com **React Native + Expo**, utilizando **SQLite**, **geolocalização**, **galeria/câmera** e **mapa interativo**.
 
-O aplicativo permite cadastrar imagens da galeria do dispositivo, armazenar informações no banco SQLite local e visualizar a localização das imagens em um mapa interativo.
+O objetivo do projeto é permitir o cadastro de imagens com título e localização, armazenando os dados localmente no dispositivo e exibindo as imagens em uma galeria e em um mapa com marcadores.
 
 ---
 
 ## Funcionalidades
 
-✅ Adicionar imagem pela galeria do dispositivo
-✅ Inserir título para cada imagem
-✅ Capturar localização atual automaticamente
-✅ Salvar dados localmente com SQLite
-✅ Exibir galeria de imagens
-✅ Exibir mapa com marcadores
-✅ Exibir miniatura ao tocar no marcador
-✅ Excluir imagens da galeria
-✅ Persistência de dados após fechar o aplicativo
-✅ Interface personalizada
+- Adicionar imagem pela galeria do dispositivo
+- Tirar foto usando a câmera
+- Visualizar prévia antes de salvar
+- Inserir título para cada imagem
+- Capturar localização atual automaticamente
+- Salvar dados localmente com SQLite
+- Listar imagens cadastradas em uma galeria
+- Pesquisar imagens pelo título
+- Renomear título de imagens salvas
+- Excluir imagens com confirmação
+- Exibir mapa com marcadores das imagens
+- Ao tocar no marcador, exibir detalhes com miniatura, título, data e hora
+- Persistência dos dados após fechar o aplicativo
+- Interface personalizada com componentes reutilizáveis
 
 ---
 
 ## Tecnologias Utilizadas
 
-* React Native
-* Expo
-* TypeScript
-* SQLite
-* Expo Image Picker
-* Expo Location
-* React Native Maps
-* Expo Router
+- React Native
+- Expo
+- TypeScript
+- Expo Router
+- Expo SQLite
+- Expo Image Picker
+- Expo Location
+- React Native Maps
+- React Native Safe Area Context
 
 ---
 
-## Bibliotecas utilizadas
-
-Instalação das dependências:
+## Instalação das dependências
 
 ```bash
-npx expo install expo-sqlite
-npx expo install expo-image-picker
-npx expo install expo-location
-npx expo install react-native-maps
-npx expo install react-native-safe-area-context
+npm install
 ```
 
-ou:
+Caso seja necessário instalar manualmente as bibliotecas principais:
 
 ```bash
 npx expo install expo-sqlite expo-image-picker expo-location react-native-maps react-native-safe-area-context
@@ -54,9 +53,41 @@ npx expo install expo-sqlite expo-image-picker expo-location react-native-maps r
 
 ---
 
+## Como executar o projeto
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/carlos-hferro/galeria-fotos.git
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd galeria-fotos
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute o projeto:
+
+```bash
+npx expo start
+```
+
+Depois, abra com o **Expo Go** no celular lendo o QR Code.
+
+> Observação: a versão Web pode apresentar limitações com `react-native-maps`, por isso o teste principal deve ser feito no dispositivo móvel ou em emulador Android.
+
+---
+
 ## Estrutura do Banco de Dados
 
-Tabela utilizada:
+Tabela utilizada: `photos`
 
 ```sql
 CREATE TABLE IF NOT EXISTS photos (
@@ -69,6 +100,15 @@ CREATE TABLE IF NOT EXISTS photos (
 );
 ```
 
+Campos armazenados:
+
+- `id`: identificador único da imagem
+- `title`: título informado pelo usuário
+- `image_uri`: URI local da imagem
+- `latitude`: latitude capturada no momento do cadastro
+- `longitude`: longitude capturada no momento do cadastro
+- `created_at`: data e hora do cadastro
+
 ---
 
 ## Estrutura do Projeto
@@ -76,13 +116,43 @@ CREATE TABLE IF NOT EXISTS photos (
 ```txt
 app
  ├── (tabs)
- │     ├── index.tsx
- │     ├── explore.tsx
- │     └── _layout.tsx
- │
+ │    ├── index.tsx
+ │    ├── explore.tsx
+ │    └── _layout.tsx
+ └── _layout.tsx
+
+components
+ ├── ActionButtons.tsx
+ ├── PhotoCard.tsx
+ ├── PhotoPreview.tsx
+ └── SearchBar.tsx
+
 database
  └── database.ts
+
+types
+ └── Photo.ts
+
+screenshots
+ ├── galeria.png
+ ├── mapa.png
+ └── detalhes.png
 ```
+
+---
+
+## Organização do Código
+
+O projeto foi separado em responsabilidades:
+
+- `app/(tabs)/index.tsx`: tela principal da galeria
+- `app/(tabs)/explore.tsx`: tela do mapa
+- `components/`: componentes reutilizáveis da interface
+- `database/database.ts`: criação da tabela e funções SQLite
+- `types/Photo.ts`: tipagem dos dados das fotos
+- `screenshots/`: imagens utilizadas no README
+
+Essa organização facilita manutenção, leitura e reaproveitamento de código.
 
 ---
 
@@ -91,74 +161,22 @@ database
 ```txt
 Usuário abre o aplicativo
 ↓
-Seleciona uma imagem
+Escolhe imagem da galeria ou tira uma foto
 ↓
-Visualiza a prévia
+Visualiza a prévia da imagem
 ↓
 Informa o título
 ↓
-Aplicativo captura localização atual
+Aplicativo captura a localização atual
 ↓
 Imagem é salva no SQLite
 ↓
 Galeria atualiza automaticamente
 ↓
 Mapa exibe marcador da nova imagem
+↓
+Ao tocar no marcador, detalhes da imagem são exibidos
 ```
-
----
-
-## Como executar o projeto
-
-Clonar o repositório:
-
-```bash
-git clone https://github.com/carlos-hferro/galeria-fotos.git
-```
-
-Entrar na pasta:
-
-```bash
-cd galeria-fotos
-```
-
-Instalar dependências:
-
-```bash
-npm install
-```
-
-Executar:
-
-```bash
-npx expo start
-```
-
-Para abrir:
-
-```txt
-Pressione "a" → Android
-Pressione "w" → Web
-ou leia o QR Code com Expo Go
-```
-
----
-
-## Funcionalidades demonstradas
-
-### Galeria
-
-* Cadastro de imagem
-* Título personalizado
-* Exclusão com confirmação
-* Persistência local
-
-### Mapa
-
-* Marcadores automáticos
-* Exibição da localização
-* Miniatura da imagem
-* Data e hora do registro
 
 ---
 
@@ -166,23 +184,42 @@ ou leia o QR Code com Expo Go
 
 ### Galeria
 
-![Galeria](./screenshots/Galeria_Minha_Casa.jpeg)
-
-![Galeria](./screenshots/Galeria_Vazia.jpeg)
+![Galeria](./screenshots/galeria.png)
 
 ### Mapa
 
-![Mapa](./screenshots/Mapa_Vazio.jpeg)
+![Mapa](./screenshots/mapa.png)
 
-### Detalhes do Mapa
+### Detalhes no Mapa
 
-![Detalhes](./screenshots/Mapa_Minha_Casa.png)
+![Detalhes no mapa](./screenshots/detalhes.png)
 
 ---
+
+## Funcionalidades Demonstradas
+
+### Galeria
+
+- Cadastro de imagens
+- Pré-visualização antes de salvar
+- Título personalizado
+- Pesquisa por título
+- Renomear imagem
+- Exclusão com confirmação
+- Persistência local
+
+### Mapa
+
+- Marcadores automáticos
+- Integração com latitude e longitude
+- Detalhes da imagem ao tocar no marcador
+- Miniatura, título, data e hora
+
+---
+
 ## Autor
 
-Carlos Henrique Ferro de Almeida
-
+Carlos Henrique Ferro de Almeida  
 Curso: Desenvolvimento Mobile  
 Universidade: UNIPAR  
 Disciplina: Desenvolvimento Mobile
@@ -191,9 +228,7 @@ Disciplina: Desenvolvimento Mobile
 
 ## Observações
 
-- O aplicativo utiliza SQLite para armazenamento local.
-- Os dados permanecem salvos após fechar o aplicativo.
-- A localização é capturada automaticamente no momento do cadastro.
-- O mapa exibe marcadores com miniatura e informações da imagem.
-  
---- 
+- O armazenamento é local utilizando SQLite.
+- As informações permanecem salvas após fechar o aplicativo.
+- A localização é capturada no momento do cadastro.
+- O aplicativo deve ser testado preferencialmente no Expo Go ou em emulador Android.
