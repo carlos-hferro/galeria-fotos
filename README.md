@@ -184,15 +184,13 @@ Ao tocar no marcador, detalhes da imagem são exibidos
 
 ### Galeria
 
-![Galeria](./screenshots/galeria.png)
+![Galeria](./screenshots/Galeria%20Vazia.jpeg)
+![Galeria](./screenshots/Galeria_Minha_Casa.jpeg)
 
 ### Mapa
 
-![Mapa](./screenshots/mapa.png)
-
-### Detalhes no Mapa
-
-![Detalhes no mapa](./screenshots/detalhes.png)
+![Mapa](./screenshots/Mapa%20Minha%20Casa.jpeg)
+![Mapa](./screenshots/Mapa%20Vazio.jpeg)
 
 ---
 
