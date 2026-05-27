@@ -154,6 +154,7 @@ export function PhotoCard({
             <TouchableOpacity
               onPress={() => {
                 setEditingTitle('');
+                handleStartRenamePhoto(0, '');
               }}
               style={{
                 flex: 1,

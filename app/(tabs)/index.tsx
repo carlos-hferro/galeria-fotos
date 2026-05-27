@@ -122,32 +122,38 @@ export default function HomeScreen() {
       return;
     }
 
-    // PEGAR LOCALIZAÇÃO
-    const location = await Location.getCurrentPositionAsync({
-      accuracy: Location.Accuracy.Balanced,
-    });
-    setLatitude(location.coords.latitude);
-
-    setLongitude(location.coords.longitude);
-
     // ABRIR GALERIA
     const result =
       await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ['images'],
         allowsEditing: true,
-        quality: 1,
+        quality: 0.5,
       });
 
     if (!result.canceled) {
+
+      let location =
+        await Location.getLastKnownPositionAsync();
+
+      if (!location) {
+        location =
+          await Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.Low,
+          });
+      }
+
       const imageUri = result.assets[0].uri;
 
       setSelectedImage(imageUri);
+
       setLatitude(location.coords.latitude);
+
       setLongitude(location.coords.longitude);
     }
   }
 
   async function takePhoto() {
+
     const permission =
       await Location.requestForegroundPermissionsAsync();
 
@@ -170,20 +176,29 @@ export default function HomeScreen() {
       return;
     }
 
-    const location = await Location.getCurrentPositionAsync({
-      accuracy: Location.Accuracy.Balanced,
-    });
-
     const result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-      quality: 1,
+      quality: 0.5,
     });
 
     if (!result.canceled) {
+
+      let location =
+        await Location.getLastKnownPositionAsync();
+
+      if (!location) {
+        location =
+          await Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.Low,
+          });
+      }
+
       const imageUri = result.assets[0].uri;
 
       setSelectedImage(imageUri);
+
       setLatitude(location.coords.latitude);
+
       setLongitude(location.coords.longitude);
     }
   }
