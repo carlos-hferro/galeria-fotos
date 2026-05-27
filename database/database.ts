@@ -1,9 +1,9 @@
 import * as SQLite from 'expo-sqlite';
+import { Photo } from '../types/Photo';
 
 const database = SQLite.openDatabaseSync('gallery.db');
 
 export function initDatabase() {
-
   database.execSync(`
     CREATE TABLE IF NOT EXISTS photos (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +24,6 @@ export function savePhoto(
   latitude: number,
   longitude: number
 ) {
-
   database.runSync(
     `
       INSERT INTO photos
@@ -43,15 +42,16 @@ export function savePhoto(
   console.log('Foto salva!');
 }
 
-export function getPhotos() {
-
-  const photos = database.getAllSync(`
-    SELECT * FROM photos
+export function getPhotos(): Photo[] {
+  const photos = database.getAllSync<Photo>(`
+    SELECT *
+    FROM photos
     ORDER BY id DESC
   `);
 
   return photos;
 }
+
 export function deletePhoto(id: number) {
   database.runSync(
     `
@@ -62,6 +62,22 @@ export function deletePhoto(id: number) {
   );
 
   console.log('Foto excluída!');
+}
+
+export function updatePhotoTitle(
+  id: number,
+  title: string
+) {
+  database.runSync(
+    `
+      UPDATE photos
+      SET title = ?
+      WHERE id = ?
+    `,
+    [title, id]
+  );
+
+  console.log('Título atualizado!');
 }
 
 export default database;
