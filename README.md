@@ -184,13 +184,14 @@ Ao tocar no marcador, detalhes da imagem são exibidos
 
 ### Galeria
 
-<img src="./screenshots/Galeria Vazia.jpeg" width="250">
-<img src="./screenshots/Galeria_Minha_Casa.jpeg" width="250">
+<img src="./screenshots/galeria_editar.jpeg" width="250">
+<img src="./screenshots/galeria_pesquisar.jpeg" width="250">
+<img src="./screenshots/minha_galeria.jpeg" width="250">
 
 ### Mapa
 
-<img src="./screenshots/Mapa Minha Casa.jpeg" width="250">
-<img src="./screenshots/Mapa Vazio.jpeg" width="250">
+<img src="./screenshots/mapa_marcadores.jpeg" width="250">
+<img src="./screenshots/mapa_roxao.jpeg" width="250">
 
 ---
 
